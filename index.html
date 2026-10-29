@@ -1,0 +1,1425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>GroceryHub POS</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+<!-- =======================================================
+     LOGIN
+======================================================= -->
+
+<div id="loginPage">
+
+    <div class="login-card">
+
+        <div class="login-logo">
+
+            <div class="login-logo-icon">
+                🛒
+            </div>
+
+            <h1>GroceryHub</h1>
+
+        </div>
+
+        <p class="login-subtitle">
+            Retail POS & Store Management
+        </p>
+
+
+        <form id="loginForm">
+
+            <div class="input-group">
+
+                <label>Email Address</label>
+
+                <input
+                    type="email"
+                    id="loginEmail"
+                    placeholder="you@example.com"
+                    required>
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>Password</label>
+
+                <input
+                    type="password"
+                    id="loginPassword"
+                    placeholder="Enter password"
+                    required>
+
+            </div>
+
+
+            <button
+                class="login-button"
+                type="submit">
+
+                Sign In
+
+            </button>
+
+        </form>
+
+
+        <div class="demo-box">
+
+            <strong>Prototype Login</strong>
+
+            <br><br>
+
+            Sign in with any valid email address and any password.
+
+            <br><br>
+
+            Example: admin@gmail.com / admin123
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =======================================================
+     APPLICATION
+======================================================= -->
+
+<div id="app">
+
+<div class="layout">
+
+
+<!-- =======================================================
+     SIDEBAR
+======================================================= -->
+
+<aside class="sidebar">
+
+    <div class="sidebar-logo">
+
+        <div class="sidebar-logo-icon">
+            🛒
+        </div>
+
+        <strong>GroceryHub</strong>
+
+    </div>
+
+
+    <div class="sidebar-section">
+        Main
+    </div>
+
+
+    <nav class="nav">
+
+        <button
+            class="nav-item active"
+            data-page="dashboard">
+
+            <span class="nav-icon">▦</span>
+            <span>Dashboard</span>
+
+        </button>
+
+
+        <button
+            class="nav-item"
+            data-page="pos">
+
+            <span class="nav-icon">🛒</span>
+            <span>Point of Sale</span>
+
+        </button>
+
+
+        <button
+            class="nav-item"
+            data-page="products">
+
+            <span class="nav-icon">▣</span>
+            <span>Products</span>
+
+        </button>
+
+
+        <button
+            class="nav-item"
+            data-page="inventory">
+
+            <span class="nav-icon">▤</span>
+            <span>Inventory</span>
+
+        </button>
+
+
+        <button
+            class="nav-item"
+            data-page="orders">
+
+            <span class="nav-icon">▧</span>
+            <span>Orders</span>
+
+        </button>
+
+
+        <div class="sidebar-section">
+            Management
+        </div>
+
+
+        <button
+            class="nav-item"
+            data-page="customers">
+
+            <span class="nav-icon">♙</span>
+            <span>Customers</span>
+
+        </button>
+
+
+        <button
+            class="nav-item"
+            data-page="addresses">
+
+            <span class="nav-icon">⌖</span>
+            <span>Address Book</span>
+
+        </button>
+
+
+        <button
+            class="nav-item"
+            data-page="settings">
+
+            <span class="nav-icon">⚙</span>
+            <span>Settings</span>
+
+        </button>
+
+    </nav>
+
+
+    <div class="sidebar-bottom">
+
+        <div class="store-status">
+
+            <span class="status-dot"></span>
+
+            Store Online
+
+            <br>
+
+            <small>
+                POS systems operational
+            </small>
+
+        </div>
+
+    </div>
+
+</aside>
+
+
+
+<!-- =======================================================
+     MAIN
+======================================================= -->
+
+<div class="main">
+
+
+<!-- TOP BAR -->
+
+<header class="topbar">
+
+    <div class="search">
+
+        <span class="search-icon">
+            🔍
+        </span>
+
+        <input
+            id="globalSearch"
+            placeholder="Search products, orders or customers...">
+
+    </div>
+
+
+    <div class="top-actions">
+
+        <div class="notification">
+
+            🔔
+
+            <span class="notification-badge">
+                3
+            </span>
+
+        </div>
+
+
+        <div class="profile">
+
+            <div class="avatar">
+                A
+            </div>
+
+            <div>
+
+                <strong>Admin</strong>
+
+                <br>
+
+                <small id="userEmail">
+                    admin@gmail.com
+                </small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<main class="content">
+
+
+<!-- =======================================================
+     DASHBOARD
+======================================================= -->
+
+<section
+    id="dashboard"
+    class="page active">
+
+    <div class="page-header">
+
+        <div>
+
+            <h1 class="page-title">
+                Store Overview
+            </h1>
+
+            <p class="page-subtitle">
+                Monitor sales, inventory and checkout activity.
+            </p>
+
+        </div>
+
+
+        <button
+            class="btn btn-primary"
+            onclick="openPOS()">
+
+            + New Sale
+
+        </button>
+
+    </div>
+
+
+    <div class="kpi-grid">
+
+        <div class="kpi">
+
+            <div class="kpi-top">
+
+                <span class="kpi-label">
+                    Today's Sales
+                </span>
+
+                <span class="kpi-icon">
+                    ₹
+                </span>
+
+            </div>
+
+            <div
+                class="kpi-value"
+                id="todaySales">
+
+                ₹0
+
+            </div>
+
+            <div class="kpi-change">
+                ↑ Store sales
+            </div>
+
+        </div>
+
+
+        <div class="kpi">
+
+            <div class="kpi-top">
+
+                <span class="kpi-label">
+                    Transactions
+                </span>
+
+                <span class="kpi-icon">
+                    ⇄
+                </span>
+
+            </div>
+
+            <div
+                class="kpi-value"
+                id="transactionCount">
+
+                0
+
+            </div>
+
+            <div class="kpi-change">
+                Completed transactions
+            </div>
+
+        </div>
+
+
+        <div class="kpi">
+
+            <div class="kpi-top">
+
+                <span class="kpi-label">
+                    Products
+                </span>
+
+                <span class="kpi-icon">
+                    ▣
+                </span>
+
+            </div>
+
+            <div
+                class="kpi-value"
+                id="productCount">
+
+                0
+
+            </div>
+
+            <div class="kpi-change">
+                Active products
+            </div>
+
+        </div>
+
+
+        <div class="kpi">
+
+            <div class="kpi-top">
+
+                <span class="kpi-label">
+                    Low Stock
+                </span>
+
+                <span class="kpi-icon">
+                    !
+                </span>
+
+            </div>
+
+            <div
+                class="kpi-value"
+                id="lowStockCount">
+
+                0
+
+            </div>
+
+            <div class="kpi-change">
+                Requires attention
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="dashboard-grid">
+
+
+        <!-- RECENT TRANSACTIONS -->
+
+        <div class="panel">
+
+            <div class="panel-header">
+
+                <h3>
+                    Recent Transactions
+                </h3>
+
+                <button
+                    class="btn btn-light"
+                    onclick="navigate('orders')">
+
+                    View All
+
+                </button>
+
+            </div>
+
+
+            <div class="panel-body">
+
+                <div class="order-row order-header">
+
+                    <span>Order</span>
+
+                    <span>Customer</span>
+
+                    <span>Total</span>
+
+                    <span>Status</span>
+
+                </div>
+
+
+                <div id="recentOrders"></div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- LOW STOCK -->
+
+        <div class="panel">
+
+            <div class="panel-header">
+
+                <h3>
+                    Stock Alerts
+                </h3>
+
+                <button
+                    class="btn btn-light"
+                    onclick="navigate('inventory')">
+
+                    View
+
+                </button>
+
+            </div>
+
+
+            <div class="panel-body">
+
+                <div id="stockAlerts"></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =======================================================
+     POS
+======================================================= -->
+
+<section
+    id="pos"
+    class="page">
+
+    <div class="page-header">
+
+        <div>
+
+            <h1 class="page-title">
+                Point of Sale
+            </h1>
+
+            <p class="page-subtitle">
+                Fast checkout and real-time cart management.
+            </p>
+
+        </div>
+
+        <div>
+
+            <span class="badge badge-green">
+                ● POS Online
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="pos-layout">
+
+
+        <!-- PRODUCTS -->
+
+        <div>
+
+            <div class="category-bar">
+
+                <button
+                    class="category-btn active"
+                    onclick="filterCategory('All',this)">
+
+                    All
+
+                </button>
+
+                <button
+                    class="category-btn"
+                    onclick="filterCategory('Grains',this)">
+
+                    Grains
+
+                </button>
+
+                <button
+                    class="category-btn"
+                    onclick="filterCategory('Dairy',this)">
+
+                    Dairy
+
+                </button>
+
+                <button
+                    class="category-btn"
+                    onclick="filterCategory('Fruits',this)">
+
+                    Fruits
+
+                </button>
+
+                <button
+                    class="category-btn"
+                    onclick="filterCategory('Vegetables',this)">
+
+                    Vegetables
+
+                </button>
+
+                <button
+                    class="category-btn"
+                    onclick="filterCategory('Snacks',this)">
+
+                    Snacks
+
+                </button>
+
+                <button
+                    class="category-btn"
+                    onclick="filterCategory('Essentials',this)">
+
+                    Essentials
+
+                </button>
+
+            </div>
+
+
+            <div
+                id="posProducts"
+                class="products-grid">
+
+            </div>
+
+        </div>
+
+
+
+        <!-- CART -->
+
+        <aside class="cart">
+
+            <div class="cart-header">
+
+                <strong>
+                    Current Sale
+                </strong>
+
+                <span id="cartCount">
+                    0 items
+                </span>
+
+            </div>
+
+
+            <div
+                id="cartItems"
+                class="cart-items">
+
+                <p
+                    style="
+                    color:#6b7280;
+                    font-size:13px;
+                    padding:20px 0;
+                    text-align:center">
+
+                    Cart is empty.
+
+                </p>
+
+            </div>
+
+
+            <div class="cart-summary">
+
+                <div class="summary-line">
+
+                    <span>
+                        Subtotal
+                    </span>
+
+                    <span id="subtotal">
+                        ₹0
+                    </span>
+
+                </div>
+
+
+                <div class="summary-line">
+
+                    <span>
+                        Tax
+                    </span>
+
+                    <span id="tax">
+                        ₹0
+                    </span>
+
+                </div>
+
+
+                <div class="summary-total">
+
+                    <span>
+                        Total
+                    </span>
+
+                    <span id="cartTotal">
+                        ₹0
+                    </span>
+
+                </div>
+
+
+                <div class="form-group" style="margin-bottom:12px">
+
+                    <label>
+                        Customer Name
+                    </label>
+
+                    <input
+                        id="customerName"
+                        placeholder="Walk-in Customer">
+
+                </div>
+
+
+                <div>
+
+                    <small>
+                        Payment method
+                    </small>
+
+
+                    <div class="payment-methods">
+
+                        <button
+                            class="payment-btn active"
+                            onclick="selectPayment(this,'Cash')">
+
+                            💵 Cash
+
+                        </button>
+
+
+                        <button
+                            class="payment-btn"
+                            onclick="selectPayment(this,'UPI')">
+
+                            📱 UPI
+
+                        </button>
+
+
+                        <button
+                            class="payment-btn"
+                            onclick="selectPayment(this,'Card')">
+
+                            💳 Card
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="checkout-btn"
+                    onclick="checkout()">
+
+                    Complete Payment
+
+                </button>
+
+
+                <button
+                    class="btn btn-light"
+                    style="width:100%;margin-top:8px"
+                    onclick="clearCart()">
+
+                    Clear Cart
+
+                </button>
+
+            </div>
+
+        </aside>
+
+    </div>
+
+</section>
+
+
+
+<!-- =======================================================
+     PRODUCTS
+======================================================= -->
+
+<section
+    id="products"
+    class="page">
+
+    <div class="page-header">
+
+        <div>
+
+            <h1 class="page-title">
+                Product Management
+            </h1>
+
+            <p class="page-subtitle">
+                Manage grocery products and pricing.
+            </p>
+
+        </div>
+
+        <button
+            class="btn btn-primary"
+            onclick="document.getElementById('productForm').scrollIntoView()">
+
+            + Add Product
+
+        </button>
+
+    </div>
+
+
+    <div class="panel">
+
+        <div class="panel-body">
+
+            <form id="productForm">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label>
+                            Product Name
+                        </label>
+
+                        <input
+                            id="productName"
+                            placeholder="Example: Basmati Rice"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Category
+                        </label>
+
+                        <select id="productCategory">
+
+                            <option>Grains</option>
+                            <option>Dairy</option>
+                            <option>Fruits</option>
+                            <option>Vegetables</option>
+                            <option>Snacks</option>
+                            <option>Essentials</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Price
+                        </label>
+
+                        <input
+                            type="number"
+                            id="productPrice"
+                            min="1"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Stock
+                        </label>
+
+                        <input
+                            type="number"
+                            id="productStock"
+                            min="0"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Unit
+                        </label>
+
+                        <select id="productUnit">
+
+                            <option>kg</option>
+                            <option>litre</option>
+                            <option>packet</option>
+                            <option>piece</option>
+                            <option>box</option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="btn btn-primary"
+                    style="margin-top:15px">
+
+                    Add Product
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <div class="panel">
+
+        <div class="panel-header">
+
+            <h3>
+                Product Catalog
+            </h3>
+
+            <input
+                id="productSearch"
+                placeholder="Search product..."
+                style="
+                padding:9px;
+                border:1px solid #e5e7eb;
+                border-radius:7px">
+
+        </div>
+
+
+        <div class="panel-body">
+
+            <div
+                id="productTable"
+                class="table-wrapper">
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =======================================================
+     INVENTORY
+======================================================= -->
+
+<section
+    id="inventory"
+    class="page">
+
+    <div class="page-header">
+
+        <div>
+
+            <h1 class="page-title">
+                Inventory Management
+            </h1>
+
+            <p class="page-subtitle">
+                Real-time stock visibility and alerts.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="panel">
+
+        <div class="panel-body">
+
+            <div
+                id="inventoryTable"
+                class="table-wrapper">
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =======================================================
+     ORDERS
+======================================================= -->
+
+<section
+    id="orders"
+    class="page">
+
+    <div class="page-header">
+
+        <div>
+
+            <h1 class="page-title">
+                Orders & Transactions
+            </h1>
+
+            <p class="page-subtitle">
+                Review completed sales and payment records.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="panel">
+
+        <div class="panel-body">
+
+            <div
+                id="ordersTable"
+                class="table-wrapper">
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =======================================================
+     CUSTOMERS
+======================================================= -->
+
+<section
+    id="customers"
+    class="page">
+
+    <div class="page-header">
+
+        <div>
+
+            <h1 class="page-title">
+                Customers
+            </h1>
+
+            <p class="page-subtitle">
+                Customer information and purchase activity.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="panel">
+
+        <div class="panel-header">
+
+            <h3>
+                Customer List
+            </h3>
+
+        </div>
+
+
+        <div class="panel-body">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Name</th>
+                        <th>Customer Code</th>
+                        <th>Phone</th>
+                        <th>Orders</th>
+                        <th>Total Spent</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="customerTable"></tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =======================================================
+     ADDRESS BOOK
+======================================================= -->
+
+<section
+    id="addresses"
+    class="page">
+
+    <div class="page-header">
+
+        <div>
+
+            <h1 class="page-title">
+                Address Book
+            </h1>
+
+            <p class="page-subtitle">
+                Manage customer delivery and store addresses.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="panel">
+
+        <div class="panel-body">
+
+            <form id="addressForm">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label>
+                            Address Label
+                        </label>
+
+                        <input
+                            id="addressLabel"
+                            placeholder="Home / Shop"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Contact Person
+                        </label>
+
+                        <input
+                            id="addressContact"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Phone
+                        </label>
+
+                        <input
+                            id="addressPhone"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            City
+                        </label>
+
+                        <input
+                            id="addressCity"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            State
+                        </label>
+
+                        <input
+                            id="addressState"
+                            value="Maharashtra"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Pincode
+                        </label>
+
+                        <input
+                            id="addressPincode"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group full">
+
+                        <label>
+                            Full Address
+                        </label>
+
+                        <textarea
+                            id="fullAddress"
+                            rows="3"
+                            required></textarea>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="btn btn-primary"
+                    style="margin-top:15px">
+
+                    Save Address
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <div
+        id="addressList"
+        style="
+        display:grid;
+        grid-template-columns:
+        repeat(auto-fit,minmax(250px,1fr));
+        gap:15px">
+
+    </div>
+
+</section>
+
+
+
+<!-- =======================================================
+     SETTINGS
+======================================================= -->
+
+<section
+    id="settings"
+    class="page">
+
+    <div class="page-header">
+
+        <div>
+
+            <h1 class="page-title">
+                Settings
+            </h1>
+
+            <p class="page-subtitle">
+                Configure your store preferences.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="panel">
+
+        <div class="panel-body">
+
+            <div class="setting">
+
+                <div>
+
+                    <div class="setting-title">
+                        Dark Mode
+                    </div>
+
+                    <div class="setting-desc">
+                        Switch between light and dark interface.
+                    </div>
+
+                </div>
+
+
+                <label class="switch">
+
+                    <input
+                        type="checkbox"
+                        id="darkMode">
+
+                    <span class="slider"></span>
+
+                </label>
+
+            </div>
+
+
+            <div class="setting">
+
+                <div>
+
+                    <div class="setting-title">
+                        Store Status
+                    </div>
+
+                    <div class="setting-desc">
+                        GroceryHub POS is currently online.
+                    </div>
+
+                </div>
+
+                <span class="badge badge-green">
+                    Online
+                </span>
+
+            </div>
+
+
+            <div class="setting">
+
+                <div>
+
+                    <div class="setting-title">
+                        Account
+                    </div>
+
+                    <div
+                        class="setting-desc"
+                        id="settingsEmail">
+
+                        admin@gmail.com
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="btn btn-danger"
+                    onclick="logout()">
+
+                    Sign Out
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+</main>
+
+</div>
+
+</div>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
